@@ -27,7 +27,7 @@ helm repo update
 ```
 4. install prometheus
 ```shell
-helm install prometheus prometheus-community/prometheus
+helm install prometheus prometheus-community/prometheus --set prometheus-node-exporter.hostRootFsMount.enabled=false
 ```
 5. expose prometheus service through NodePort
 ```shell
@@ -49,5 +49,5 @@ echo “password_value” | openssl base64 -d ; echo
 ```shell
 echo “username_value” | openssl base64 -d ; echo
 ```
-10. login to grafana and add `Data Source` providing the `prometheus-server-ext` url we got after installation (at step 5)
+10. login to grafana and add `Data Source` providing the `prometheus-server-ext` url we got after installation (at step 5) `http://host.docker.internal:{NodePort}`
 11. now we can create dashboard in grafana 
